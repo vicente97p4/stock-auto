@@ -14,7 +14,7 @@ class MongoDBHandler:
         _db, _collection에는 현재 사용하는 데이터베이스 및 콜렉션 명을 저장한다.
         """
         config = configparser.ConfigParser()
-        config.read('conf/config.ini')
+        config.read('C:/Users/vicente97p4.lee/Desktop/stock-auto/stocklab/conf/config.ini')
         host = config['MONGODB']['host']
         port = config['MONGODB']['port']
         self._client = MongoClient(host, int(port))

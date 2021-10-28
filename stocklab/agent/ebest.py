@@ -75,7 +75,7 @@ class EBest:
 
         run_mode = "EBEST_" + mode
         config = configparser.ConfigParser()
-        config.read('conf/config.ini')
+        config.read('C:/Users/vicente97p4.lee/Desktop/stock-auto/stocklab/conf/config.ini')
         self.user = config[run_mode]['user']
         self.passwd = config[run_mode]['password']
         self.cert_passwd = config[run_mode]['cert_passwd']
@@ -456,6 +456,9 @@ class EBest:
                                     "CSPAQ12300OutBlock3",
                                     *out_params,
                                     **in_params)
+
+        if not result:
+            result = '보유 주식이 없습니다.'
         return result
 
 
@@ -547,6 +550,7 @@ class EBest:
                                     **in_params)
         return result
 
+    # 과거 데이터 조회 API
     def get_price_n_min_by_code(self, date, code, tick=None):
         """TR: t8412 주식차트(N분) 
         :param code:str 종목코드

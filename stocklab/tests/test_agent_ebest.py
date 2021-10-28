@@ -1,7 +1,7 @@
 import unittest
-from agent.ebest import EBest
+from stocklab.agent.ebest import EBest
 import inspect
-
+import time
 class TestEbest(unittest.TestCase):
     def setUp(self):
         self.ebest = EBest("DEMO")
@@ -9,9 +9,9 @@ class TestEbest(unittest.TestCase):
 
     # def test_get_current_call_price_by_code(self):
     #     print(inspect.stack()[0][3])
-        # result = self.ebest.get_current_call_price_by_code("005930")
-        # assert result
-        # print(result)
+    #     result = self.ebest.get_current_call_price_by_code("005930")
+    #     assert result
+    #     print(result)
 
 
     
@@ -60,12 +60,15 @@ class TestEbest(unittest.TestCase):
     #     result = self.ebest.order_stock("005930", "2", "46000", "2", "00")
     #     assert result
     #     print(result)
-    #     #code = result[0]["ShtnIsuNo"]
-    #     #order_no = result[0]["OrdNo"]
-    #     #print(code, order_no)
-    #     #time.sleep(1)
-    #     #result1 = self.ebest.get_order_check("005930", order_no)
-    #     #print(result1)
+    #     if result[0]['주문시각'] == '':
+    #         print('주문을 실패했습니다.(정규 매매장이 종료되었을 수 있음)')
+    #     else:
+    #         code = result[0]["ShtnIsuNo"]
+    #         order_no = result[0]["OrdNo"]
+    #         print(code, order_no)
+    #         time.sleep(1)
+    #         result1 = self.ebest.get_order_check("005930", order_no)
+    #         print(result1)
 
 
 
@@ -78,14 +81,15 @@ class TestEbest(unittest.TestCase):
 
     # def test_get_price_n_min_by_code(self):
     #     print(inspect.stack()[0][3])
-    #     result = self.ebest.get_price_n_min_by_code("20190412", "180640")
+    #     result = self.ebest.get_price_n_min_by_code("20210412", "180640")
     #     assert result
     #     print(result)
     # def test_get_price_n_min_by_code_tick(self):
     #     print(inspect.stack()[0][3])
-    #     result = self.ebest.get_price_n_min_by_code("20190412", "005930", 0)
+    #     result = self.ebest.get_price_n_min_by_code("20210412", "005930", 0)
     #     assert result
     #     print(result)
+
     # def test_get_account_stock_info(self):
     #     print(inspect.stack()[0][3])
     #     result = self.ebest.get_account_stock_info()
