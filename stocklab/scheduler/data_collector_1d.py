@@ -22,14 +22,14 @@ def collect_code_list():
 def collect_stock_info():
     code_list = mongodb.find_items({}, 'stocklab', 'code_info') 
     target_code = set([item['단축코드'] for item in code_list]) # 수집할 종목 코드를 target_code에 저장
-
+    
     # 오늘 날짜로 수집된 데이터가 있다면 target_code에서 제외
     # 재실행하면 데이터가 중복으로 수집되는데, 중복이 발생하면 데이터를 추가로 가공해야 하기 때문에 애초에 수집 단계에서 중복이 발생하지 않도록 하기 위함
     today = datetime.today().strftime('%Y%m%d')
     collect_list = mongodb.find_items({'날짜':today}, 'stocklab', 'price_info').distinct('code') 
     for col in collect_list:
         target_code.remove(col)
-
+    
     # 최종적으로 수집해야 하는 종목 코드는 target_code에 저장되며, get_stock_price_by_code를 이용해 1일 치 데이터를 가져온다.
     # 수집한 데이터는 price_info에 넣는다.
     for code in target_code:
