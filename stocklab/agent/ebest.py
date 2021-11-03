@@ -82,7 +82,6 @@ class EBest:
         self.host = config[run_mode]['host']
         self.port = config[run_mode]['port']
         self.account = config[run_mode]['account']
-
         self.xa_session_client = win32com.client.DispatchWithEvents("XA_Session.XASession", XASession)
 
         self.query_cnt = []
@@ -141,26 +140,6 @@ class EBest:
                 item[field] = value
             result.append(item)
 
-        """
-        print("IsNext?", xa_query.IsNext)
-        while xa_query.IsNext == True:
-            time.sleep(1)
-            errorCode = xa_query.Request(1)
-            print("errorCode", errorCode)
-            if errorCode < 0:
-                break
-            count = xa_query.GetBlockCount(out_block_name)
-            print("count", count)
-            if count == 0:
-                break
-            for i in range(count):
-                item = {}
-                for field in out_fields:
-                    value = xa_query.GetFieldData(out_block_name, field, i)
-                    item[field] = value
-                print(item)
-                result.append(item)
-        """
         XAQuery.tr_run_state = 0
         self.query_cnt.append(datetime.today())
 
