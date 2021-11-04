@@ -287,7 +287,7 @@ React는 컴포넌트 단위로 화면에 그리기 때문에 너무 많은 컴�
 
 - 종목정보(Codeinfo) 페이지와 컴포넌트 구성
 
-![이미지](.\journal\img\codeinfo.PNG)
+![이미지](./journal/img/codeinfo.PNG)
 
 종목 정보 페이지는 종목 리스트검색, 종목 가격, 그래프 컴포넌트를 포함하고 있다.  
 
