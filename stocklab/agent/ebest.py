@@ -97,7 +97,7 @@ class EBest:
         self.xa_session_client.DisconnectServer()
 
     def _execute_query(self, res, in_block_name, out_block_name, *out_fields, **set_fields):
-        """TR코드를 실행하기 위한 메소드입니다.
+        """TR코드를 실행하기 위한 메소드
         :param res:str 리소스명(TR)
         :param in_block_name:str 인블록명
         :param out_blcok_name:str 아웃블록명

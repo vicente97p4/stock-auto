@@ -111,11 +111,11 @@ class Price(Resource):
         today = datetime.datetime.now().strftime('%Y%m%d')
         default_start_date = datetime.datetime.now() - datetime.timedelta(days=7) # 쿼리가 주어지지 않으면 기본값을 오늘 날짜의 7일 전으로 지정한다.
         start_date = request.args.get('start_date', default=default_start_date.strftime('%Y%m%d'), type=str)
+        print('start_date:',start_date)
         end_date = request.args.get('end_date', default=today, type=str) # 오늘 날짜를 기본값으로 지정한다.
-        results = list(mongodb.find_items({'code':code, '날짜': {"$gte":start_date, "$lte":end_date}}, 'stocklab', 'price_info'))
+        results = list(mongodb.find_items({'code':code}, 'stocklab', 'price_info'))
         result_object = {}
         price_info_list = []
-
         for item in results:
             price_info = {price_hname_to_eng[field]: item[field] for field in item.keys() if field in price_hname_to_eng}
             price_info_list.append(price_info)

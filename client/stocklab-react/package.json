@@ -4,15 +4,16 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "material-table": "^1.69.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "@material-ui/icons": "^3.0.2",
+    "http-server": "^0.11.1",
+    "material-table": "^1.50.0",
+    "mui-datatables": "^2.0.0-beta.59",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-google-charts": "^3.0.11",
+    "react-scripts": "2.1.8",
+    "react-select": "^2.4.2",
+    "recharts": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,21 +22,16 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "react-test-renderer": "^16.8.5",
+    "react-testing-library": "^6.0.2"
   }
 }

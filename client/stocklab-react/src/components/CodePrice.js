@@ -1,12 +1,12 @@
-import React, {Component, forwardRef} from "react";
-import MaterialTable from 'material-table';
+import React, { Component, forwardRef } from 'react';
+import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
@@ -26,7 +26,7 @@ const tableIcons = {
     Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
     Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
     FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPAge: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
     NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
     PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
     ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -34,17 +34,63 @@ const tableIcons = {
     SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-};
+  };
 
-class CodePrice extends Component{
+class CodePrice extends Component {
     constructor(props){
         super(props)
         this.state = {
-            columns: [], // 'date', 'open', 'high', 'low', 'close'
-            data: []
+            columns : [],//"date", "open", "high", "low", "close"],
+            data:[],
+            cnt:0
         }
     }
     componentDidMount(){
-        
+
+    }
+    componentDidUpdate(prevProps, prevState, snapshot){
+        console.log('CodePrice componentDidUpdate operated!!')
+        if(prevProps.code !== this.props.code){
+            console.log("CodePrice componentDidupdate", this.props.code);
+            let api_url = "http://127.0.0.1:5000/codes/"+this.props.code+"/price";
+            fetch(api_url)
+                .then(res => res.json())
+                .then(data =>{
+                    console.log("price didupdate fetch", data);
+                    this.state.columns = [{title:"날짜", field:"date"}, 
+                    {title:"시가", field:"open"}, 
+                    {title:"고가", field:"high"},
+                    {title:"저가", field:"low"},
+                    {title:"종가", field:"close"}]
+                    this.state.data = data["price_list"]
+                    this.state.cnt += 1
+                    this.setState({cnt: 1});
+                }); 
+        }
+    }
+    render(){
+        return (
+            <div>
+                { this.state.data.length >0?
+                    (<MaterialTable
+                        icons={tableIcons}
+                        title={"종목 가격정보"}
+                        data={this.state.data}
+                        columns={this.state.columns}
+                        options={{
+                            headerStyle: {
+                                zIndex:-1
+                        }}
+                    }
+                    />): this.state.cnt == 0 ? (<p>종목을 선택하세요</p>) : (<p>데이터가 없습니다.</p>)
+                    
+                    }
+            </div>
+        );
     }
 }
+
+export default CodePrice;
+
+
+
